@@ -20,7 +20,7 @@ Args:
 ```
 
 ## Build
-Source will compile under Go 1.x, the [glide](https://glide.sh/) has been used for package management.
+Source will compile under Go 1.x. [Glide](https://glide.sh/) has been used for package management.
 
 ## License
 Pro2addict is released under the MIT License.
