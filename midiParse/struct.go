@@ -24,8 +24,8 @@ type Chunk struct {
 	mType string
 	mLen  uint32
 	data  []byte
-	Start int32
-	End   int32
+	Start int32 // Relative to parent
+	End   int32 // Relative to parent
 }
 
 // Header is the MIDI header chunk
@@ -35,6 +35,11 @@ type Header struct {
 	Tracks int16
 }
 
+// Note is a MIDI note event (on channel 10)
+type Note struct {
+	Chunk          Chunk
+}
+
 // Track is a MIDI track chunk
 type Track struct {
 	Chunk          Chunk
@@ -42,5 +47,5 @@ type Track struct {
 	InstrumentName string
 	TrackName      string
 	Channel        int
+	Notes		   []Note
 }
-
