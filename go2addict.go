@@ -13,10 +13,10 @@ import (
 	"strconv"
 	"strings"
 
-	cli "gopkg.in/alecthomas/kingpin.v2"
-
 	"github.com/zackslash/pro2addict/maps"
 	"github.com/zackslash/pro2addict/midiParse"
+
+	cli "gopkg.in/alecthomas/kingpin.v2"
 )
 
 const (
@@ -25,8 +25,8 @@ const (
 )
 
 var (
-	midiInLocation  = cli.Arg("in", "location of your MIDI file").Required().String()
-	midiOutLocation = cli.Arg("out", "location for output MIDI file").String()
+	midiInLocation  = cli.Arg("in", "location of your Guitar Pro MIDI file").Required().String()
+	midiOutLocation = cli.Arg("out", "location to output converted (AD2) MIDI file").String()
 	debugMode       = false
 )
 
@@ -75,7 +75,7 @@ func main() {
 	if *midiOutLocation != "" {
 		output = *midiOutLocation
 	} else {
-		output = *midiInLocation+"conv.mid"
+		output = *midiInLocation+"-ad2.mid"
 	}
 
 	ioutil.WriteFile(output, res, 0644)

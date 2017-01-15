@@ -12,7 +12,7 @@ import (
 	"strconv"
 )
 
-// http://cs.fit.edu/~ryan/cse4051/projects/midi/midi.html used as MIDI spec reference
+// http://cs.fit.edu/~ryan/cse4051/projects/midi/midi.html used as reference for MIDI spec 
 var (
 	channel10NoteEventPrefix = byte(0x99)
 	instrumentMetaID         = []byte{0xFF, 0x04}
