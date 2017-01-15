@@ -12,11 +12,11 @@ import (
 
 const (
 	// testParamTrackCount is the known number of tracks in the test midi. Note: excludes header chunk
-	testParamTrackCount = 6
+	testParamTrackCount = 1
 )
 
 func TestParse(t *testing.T) {
-	b, err := ioutil.ReadFile("./test2.mid")
+	b, err := ioutil.ReadFile("./test.mid")
 	if err != nil {
 		t.Error(err)
 	}
