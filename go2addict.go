@@ -6,17 +6,23 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"log"
+	"strconv"
+	"strings"
 
 	cli "gopkg.in/alecthomas/kingpin.v2"
 
+	"github.com/zackslash/pro2addict/maps"
 	"github.com/zackslash/pro2addict/midiParse"
 )
 
-// release is the current version number
-const release = "1.0.0"
+const (
+	release = "1.0.0"
+	drumKey = "drum"
+)
 
 var (
 	midiInLocation  = cli.Arg("in", "location of your MIDI file").Required().String()
@@ -38,16 +44,40 @@ func main() {
 		log.Fatalf(err.Error())
 	}
 
-	fmt.Printf("GOT MIDI with %d tracks.\n", len(midi.Tracks))
+	fmt.Printf("Got MIDI with %d tracks.\n", len(midi.Tracks))
+
+	res := make([]byte, len(b))
+	copy(res, b)
 
 	for _, t := range midi.Tracks {
-		fmt.Printf("Track:%d/ch%d - %s - %s\n", t.Number, t.Channel, t.InstrumentName, t.TrackName)
+		if debugMode == true {
+			fmt.Printf("Track:%d/ch%d - %s - %s\n", t.Number, t.Channel, t.InstrumentName, t.TrackName)
+		}
+		if strings.Contains(strings.ToLower(t.InstrumentName), drumKey) {
+			for _, n := range t.Notes {
+				s := fmt.Sprintf("%d", n.GetNoteData()[1])
+				i, _ := strconv.Atoi(s)
+				rep := maps.GetMappedNote(i)
+				new := make([]byte, len(n.GetNoteData()))
+				copy(new, n.GetNoteData())
+				new[1] = byte(rep)
+
+				if debugMode == true {
+					fmt.Printf("From:%x To:%x\n", n.GetNoteData(), new)
+				}
+
+				res = bytes.Replace(res, n.GetNoteData(), new, 1)
+			}
+		}
 	}
 
-	// Get GP6 track order
+	output := ""
+	if *midiOutLocation != "" {
+		output = *midiOutLocation
+	} else {
+		output = *midiInLocation+"conv.mid"
+	}
 
-	// Flip GP6 track order to AD2 track order
-
-	// Save new midi
-
+	ioutil.WriteFile(output, res, 0644)
+	fmt.Printf("Done - %s\n", output)
 }

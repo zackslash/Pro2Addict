@@ -40,6 +40,11 @@ type Note struct {
 	Chunk          Chunk
 }
 
+// GetNoteData returns the raw note data
+func (t *Note) GetNoteData() []byte {
+	return t.Chunk.data
+}
+
 // Track is a MIDI track chunk
 type Track struct {
 	Chunk          Chunk

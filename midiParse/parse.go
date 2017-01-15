@@ -53,13 +53,6 @@ func ParseMidi(raw []byte, debug bool) (*MIDI, error) {
 		if debug {
 			fmt.Printf("TRACK: offset: %d, number:%d \n", tr.Chunk.End, tr.Number)
 		}
-
-		// bytes '2' 99'2c'488360892c40 is note code
-		fmt.Printf("Found %d drum notes\n", len(tr.Notes))
-
-		for _, d := range tr.Notes {
-			fmt.Printf("%x\n", d.Chunk.data)
-		}
 	}
 
 	return &m, nil
@@ -82,29 +75,29 @@ func getTrackFromBytes(midi []byte, offset int32, number int64) (Track, error) {
 	track.InstrumentName = readInstrumentForTrack(track.Chunk.data)
 	track.TrackName = readNameForTrack(track.Chunk.data)
 	track.Channel = readChannelForTrack(track.Chunk.data)
-	track.Notes = readDrumNoteEventsForTrack(track.Chunk.data)
+	track.Notes = readDrumNoteEventsForTrack(track.Chunk.data, offset)
 	track.Number = number
 	return track, nil
 }
 
 // readDrumNoteEventsForTrack reads track event data
-func readDrumNoteEventsForTrack(trackData []byte) []Note {
+func readDrumNoteEventsForTrack(trackData []byte, offset int32) []Note {
 	res := []Note{}
-	offset := 0
+	offsettd := 0
 	for _, b := range trackData {
 		if b == channel10NoteEventPrefix {
 			ev := Note{
 				Chunk: Chunk{
 					mLen:  8,
-					data:  trackData[offset : offset+8],
-					Start: int32(offset),
-					End:   int32(offset + 8),
+					data:  trackData[offsettd : offsettd+8],
+					Start: int32(offsettd) + offset,
+					End:   int32(offsettd + 8) + offset,
 				},
 			}
 
 			res = append(res, ev)
 		}
-		offset++
+		offsettd++
 	}
 	return res
 }

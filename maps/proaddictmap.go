@@ -3,9 +3,9 @@
 // Released under the MIT License
 // https://tldrlegal.com/license/mit-license
 
-package proaddictmap
+package maps
 
-// noteMap is the mapping of GP2 MIDI node to the equivalent AD2 note
+// noteMap is the mapping of GP6 MIDI node to the equivalent AD2 note
 var noteMap = map[int]int{
   35: 36,   // Kick (hit)
 
@@ -37,4 +37,9 @@ var noteMap = map[int]int{
 
   55 : 89,  // Splash (hit)
   52 : 91,  // China (hit)      
+}
+
+// GetMappedNote returns AD2 note for givem GP6
+func GetMappedNote(key int) int {
+    return noteMap[key]
 }
