@@ -1,9 +1,13 @@
 # Pro 2 Addict
 A command-line tool written in Go; that converts MIDI drum tracks from Guitar Pro 6 to Addictive Drums 2.
 
-### Pre-built binaries
+### Pre-built Downloads
 
-TODO: Links to pre-built binaries for Windows, OSX & Linux will be available here
+[Windows](https://drive.google.com/open?id=0BxVgyPt7oHs5azFuSG5uNk5Hc1U)
+
+[Mac](https://drive.google.com/open?id=0BxVgyPt7oHs5ajRPeE1qWklGRFE)
+
+[Linux](https://drive.google.com/open?id=0BxVgyPt7oHs5MTJjWVAxTXVMcDA)
 
 ### Usage
 ```bash
