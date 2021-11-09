@@ -3,11 +3,11 @@ A command-line tool written in Go; that converts MIDI drum tracks from Guitar Pr
 
 ### Pre-built Downloads
 
-[Windows](https://drive.google.com/open?id=0BxVgyPt7oHs5azFuSG5uNk5Hc1U)
+[Windows](https://drive.google.com/file/d/0BxVgyPt7oHs5azFuSG5uNk5Hc1U/view?usp=sharing&resourcekey=0-owKNkKZAdKfn88tBgpNbRg)
 
-[Mac](https://drive.google.com/open?id=0BxVgyPt7oHs5ajRPeE1qWklGRFE)
+[Mac](https://drive.google.com/file/d/0BxVgyPt7oHs5ajRPeE1qWklGRFE/view?usp=sharing&resourcekey=0-PCbSROzoDpRvGQstrpJE7g)
 
-[Linux](https://drive.google.com/open?id=0BxVgyPt7oHs5MTJjWVAxTXVMcDA)
+[Linux](https://drive.google.com/file/d/0BxVgyPt7oHs5MTJjWVAxTXVMcDA/view?usp=sharing&resourcekey=0-2Qe0DpCjvSVVj8oIjm1OSA)
 
 ### Usage
 ```bash
