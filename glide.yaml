@@ -1,9 +1,0 @@
-package: github.com/zackslash/pro2addict
-homepage: https://github.com/zackslash/pro2addict
-author: Luke Hines
-license: MIT
-description: A tool for converting MIDI drum tracks from Guitar Pro 6 to Addictive Drums 2.
-import:
-- package: gopkg.in/alecthomas/kingpin.v2
-  version: =2.2.3
-
