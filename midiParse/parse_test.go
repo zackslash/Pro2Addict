@@ -6,7 +6,7 @@
 package midiParse
 
 import (
-	"io/ioutil"
+	"os"
 	"testing"
 )
 
@@ -16,7 +16,7 @@ const (
 )
 
 func TestParse(t *testing.T) {
-	b, err := ioutil.ReadFile("./test.mid")
+	b, err := os.ReadFile("./test.mid")
 	if err != nil {
 		t.Error(err)
 	}
@@ -30,4 +30,3 @@ func TestParse(t *testing.T) {
 		t.Errorf("Expected track count %d does not match result track count %d", testParamTrackCount, len(midi.Tracks))
 	}
 }
-
